@@ -77,7 +77,7 @@ export function isValidVariableName(name: PropertyKey): name is string {
  */
 export function quoteKey(key: PropertyKey, next: Next) {
   //return isValidVariableName(key) ? key : next(key);
-  
+
   // always quote keys
   return next(key);
 }
@@ -89,11 +89,11 @@ export function stringifyPath(path: PropertyKey[], next: Next) {
   let result = "";
 
   for (const key of path) {
-    if (isValidVariableName(key)) {
-      result += `.${key}`;
-    } else {
-      result += `[${next(key)}]`;
-    }
+    // if (isValidVariableName(key)) {
+    //   result += `.${key}`;
+    // } else {
+    result += `[${next(key)}]`;
+    // }
   }
 
   return result;
