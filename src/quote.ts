@@ -65,7 +65,6 @@ export const IS_VALID_IDENTIFIER = /^[A-Za-z_$][A-Za-z0-9_$]*$/;
  * Check if a variable name is valid.
  */
 export function isValidVariableName(name: PropertyKey): name is string {
-  return false; // need to escape all object keys
   return (
     typeof name === "string" &&
     !RESERVED_WORDS.has(name) &&
@@ -77,7 +76,10 @@ export function isValidVariableName(name: PropertyKey): name is string {
  * Quote JavaScript key access.
  */
 export function quoteKey(key: PropertyKey, next: Next) {
-  return isValidVariableName(key) ? key : next(key);
+  //return isValidVariableName(key) ? key : next(key);
+  
+  // always quote keys
+  return next(key);
 }
 
 /**
